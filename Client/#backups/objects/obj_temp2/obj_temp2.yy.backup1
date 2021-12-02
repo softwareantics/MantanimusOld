@@ -1,0 +1,16 @@
+// 2021-01-25 02:11:31
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+sprite_index = spr_temp2;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+depth = gui_depth - 1;
+
+text.halign = fa_left;
+text.valign = fa_top;
+
+text.data = "How does that make you feel?";

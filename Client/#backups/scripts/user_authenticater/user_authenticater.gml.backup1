@@ -1,0 +1,42 @@
+// 2021-01-16 19:06:28
+struct user_authenticater() constructor
+{
+    result = null;
+    header = ds_map_create();
+    
+    ds_map_add(header, "Connection", "close");
+    ds_map_add(header, "Content-Type", "application/json");
+    
+    function authenticate(_username, _password)
+    {
+        validate(_username, "_username", string_t);
+        validate(_username, "_password", string_t);
+        
+        body = {
+            username: _username,
+            password: _password,
+        };
+        
+        result = http_request("https://localhost:44380/api/UserAccounts/login", "POST", header, json_stringify(body));
+    }
+    
+    function async_handle_result()
+    {
+        var _id = async_load[? "id"];
+        
+        if (result == _id)
+        {
+            var _status = async_load[? "status"];
+            var _result = async_load[? "result"];
+            var _url = async_load[? "url"];
+            var _http_status = async_load[? "http_status"];
+            
+            debug("ID: " + string(_id));
+            debug("Status: " + string(_status));
+            debug("Result: " + string(_result));
+            debug("URL: " + string(_url));
+            debug("HTTP Status: " + string(_http_status));
+        }
+
+    }
+}

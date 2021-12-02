@@ -1,0 +1,16 @@
+// 2021-01-20 02:38:55
+function draw_text_shadow(_x, _y, _text, _color, _offset)
+{
+    validate(_x, number_t);
+    validate(_y, number_t);
+    validate(_text, string_t);
+    validate(_color, int32_t);
+    validate(_offset, int32_t);
+    
+    draw_set_color(_color);
+    
+    for (var i = 0; i < _offset; i++)
+    {
+        draw_text(_x + i, _y + i, _text);
+    }
+}

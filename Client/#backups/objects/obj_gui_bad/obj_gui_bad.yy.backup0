@@ -1,0 +1,11 @@
+// 2021-01-25 03:48:31
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_textbox_base;
+sprite_index = spr_gui_textbox;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+depth = gui_depth - 1;

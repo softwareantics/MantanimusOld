@@ -1,0 +1,52 @@
+// 2021-01-24 22:47:10
+function string_width_limit(_string, _font, _limit, _reverse)
+{
+    validate(_string, string_t);
+    validate(_font, int32_t);
+    validate(_limit, number_t);
+    
+    var _length = string_length(_string);
+    var _result = string_empty;
+    
+    draw_set_font(_font);
+    
+    reverse = function()
+    {
+        for (var i = string_length(_string); i > 0; i--)
+        {
+            var _compared = compare(i);
+            
+            if (_compared != null)
+            {
+                return _compared;
+            }
+        }
+    }
+    
+    forward = function()
+    {
+        for (var i = 0; i < string_length(_string); i++)
+        {
+            var _compared = compare(i);
+            
+            if (_compared != null)
+            {
+                return _compared;
+            }
+        }
+    }
+    
+    compare = function(_index)
+    {
+        _string += string_char_at(_string, _index);
+        
+        if (string_width(_string) >= _limit)
+        {
+            return string_length(_string);
+        }
+        
+        return null;
+    }
+    
+    return _reverse ? reverse() : forward();
+}

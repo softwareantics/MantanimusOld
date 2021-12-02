@@ -1,0 +1,5 @@
+// 2021-01-25 02:18:25
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+sprite_index = spr_boss_frame_bar;
+uses_physics = false;

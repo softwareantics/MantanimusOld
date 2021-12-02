@@ -1,0 +1,17 @@
+// 2021-01-20 17:40:21
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_checkbox_base;
+sprite_index = spr_gui_checkbox;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+text = "CHECK ME!";
+
+register_event_handler(gui_event_type.mouse_left_release, function()
+{
+    checked = !checked;
+    text = checked ? "YAY!" : "CHECK ME!";
+});

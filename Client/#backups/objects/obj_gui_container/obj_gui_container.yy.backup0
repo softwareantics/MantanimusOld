@@ -1,0 +1,15 @@
+// 2021-01-21 21:14:48
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+// TODO: Containers have children and can be moveable.
+// TODO: Containers don't go outside the bounds of the UI.
+
+#event step
+
+event_inherited();

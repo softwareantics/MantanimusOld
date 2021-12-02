@@ -1,0 +1,26 @@
+// 2021-01-25 15:02:14
+/// @description Shorthand for validating if a variable data type is an {argument_invalid_type_exception}.
+#macro argument_invalid_type_exception_t nameof(argument_invalid_type_exception)
+
+/// @implements {exception_base}
+/// @constructor argument_invalid_type_exception(_param_name, _expected_type)
+/// @description Represents an exception that is thrown when a parameter of invalid type is passed as an argument to a method or constructor.
+/// @argument {string} _param_name The name of the parameter that caused the exception to be thrown.
+/// @argument {string} _expected_type The name of the expected data type.
+/// @exception {argument_null_exception} The specified {_param_name} or {_expecte_type} parameter cannot be null.
+/// @exception {argument_invalid_type_exception} The specified {_param_name} or {_expected_type} parameter must be of type {string}.
+struct argument_invalid_type_exception(_param_name, _expected_type) : exception_base() constructor
+{
+    validate(_param_name, string_t);
+	validate(_expected_type, string_t);
+	
+	/// @override
+	/// @memberof {exception_base}
+	/// @member {string} The short message describing the exception.
+	message = "The parameter is not of the expected type.";
+	
+	/// @override
+	/// @memberof {exception_base}
+	/// @member {string} The long message describing the exception.
+	longMessage = "The specified " + _param_name + " parameter is not of the specified type: " + _expected_type + ".";
+}

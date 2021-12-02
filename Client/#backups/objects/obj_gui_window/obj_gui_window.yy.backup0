@@ -1,0 +1,62 @@
+// 2021-01-20 14:18:46
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+sprite_index = spr_window;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+overlay_sprite = spr_title_bar;
+
+title = "";
+
+title_offset_x = 0;
+
+title_offset_y = 0;
+
+title_valign = fa_top;
+
+title_halign = fa_left;
+
+title_font = fnt_gui;
+
+title_font_color = c_white;
+
+title_font_shadow_color = c_black;
+
+title_font_shadow_offset = 3;
+
+title_font_enable_shadow = false;
+
+#event step Update overlay position.
+
+event_inherited();
+
+// Overlay acts as a title bar.
+if (overlay_sprite != null)
+{
+    overlay_sprite_x = (x - sprite_xoffset) - sprite_get_xoffset(overlay_sprite);
+    overlay_sprite_y = (y - sprite_yoffset) - sprite_get_yoffset(overlay_sprite);
+}
+
+#event draw_gui
+
+event_inherited();
+
+draw_set_font(title_font);
+
+draw_set_valign(title_valign);
+draw_set_halign(title_halign);
+
+var _x = overlay_sprite_x + title_offset_x;
+var _y = overlay_sprite_y + title_offset_y;
+
+if (font_enable_shadow)
+{
+    draw_text_shadow(_x, _y, title_, title_font_shadow_color, title_font_shadow_offset);
+}
+
+draw_set_color(title_font_color);
+draw_text(_x, _y, title);

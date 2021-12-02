@@ -1,0 +1,26 @@
+// 2021-01-19 23:23:40
+#event properties (no comments/etc. here are saved)
+parent_index = -1;
+persistent = true;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+if (instance_number(obj_camera) > 1)
+{
+	throw "You can only create one camera.";
+}
+
+/// @description Shorthand for writing {view_camera[0]}.
+#macro view view_camera[0]
+
+#event step_end Set size and position of view.
+
+camera_set_view_size(view, game_width, game_height);
+
+// TODO: Set view position around player, if it's exists: https://www.youtube.com/watch?v=_g1LQ6aIJFk
+
+#event other_room_start Enable views and default camera.
+
+view_enabled = true;
+view_visible[0] = true;

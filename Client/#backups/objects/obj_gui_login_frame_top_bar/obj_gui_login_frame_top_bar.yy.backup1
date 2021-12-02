@@ -1,0 +1,20 @@
+// 2021-02-04 00:52:58
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_title_base;
+sprite_index = spr_gui_login_frame_top_bar;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+text.data = "AUTHENTICATION";
+
+display_message = function(_message, _color)
+{
+    validate(_message, string_t);
+    validate(_color, int32_t);
+    
+    text.data = _message;
+    text.color = _color;
+}

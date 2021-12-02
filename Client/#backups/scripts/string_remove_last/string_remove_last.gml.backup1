@@ -1,0 +1,13 @@
+// 2021-01-25 15:22:55
+/// @function string_remove_last(_string).
+/// @description Deletes the last character from the specified {_string} and returns the result.
+/// @argument {string} _string The string to delete the last character from.
+/// @exception {argument_null_exception} The specified {_string} parameter cannot be null.
+/// @exception {argument_invalid_type_exception} The specified {_string} parameter must be of type {string}.
+/// @return {string} The {_string} parameter with the last character removed.
+function string_remove_last(_string)
+{
+    validate(_string, string_t);
+    
+    return string_delete(_string, string_length(_string), 1);
+}

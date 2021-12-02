@@ -1,0 +1,19 @@
+// 2021-01-24 19:14:34
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_loading_bar_base;
+sprite_index = spr_gui_loading_bar;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+depth = gui_depth - 2;
+
+maximum = 1000;
+
+#event step
+
+event_inherited();
+
+progress();

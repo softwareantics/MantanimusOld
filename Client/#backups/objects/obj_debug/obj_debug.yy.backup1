@@ -1,0 +1,8 @@
+// 2021-01-20 19:24:43
+#event properties (no comments/etc. here are saved)
+parent_index = -1;
+uses_physics = false;
+
+#event create 
+
+show_debug_overlay(true);

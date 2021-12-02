@@ -1,0 +1,33 @@
+// 2021-01-20 01:30:33
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+sprite_index = spr_button;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+on_mouse_left_press = function() { debug("left press: " + string(id)); }
+
+on_mouse_left_release = function() { debug("left release: " + string(id)); }
+
+on_mouse_middle_press = function() { debug("middle press: " + string(id)); }
+
+on_mouse_middle_release = function() { debug("middle release: " + string(id)); }
+
+on_mouse_right_press = function() { debug("right press: " + string(id)); }
+
+on_mouse_right_release = function() { debug("right release: " + string(id)); }
+
+on_mouse_enter = function() { debug("mouse enter: " + string(id)); }
+
+on_mouse_leave = function() { debug("mouse leave: " + string(id)); }
+
+on_mouse_wheel_up = function() { debug("wheel up: " + string(id)); }
+
+on_mouse_wheel_down = function() { debug("wheel down: " + string(id)); }
+
+on_got_focus = function() { debug("got focus: " + string(id)); }
+
+on_lost_focus = function() { debug("lost focus: " + string(id)); }

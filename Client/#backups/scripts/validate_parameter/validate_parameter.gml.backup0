@@ -1,0 +1,17 @@
+// 2021-01-19 15:23:59
+#macro validate validate_parameter
+
+/// @function validate_parameter(_variable, _variable_name, _expected_type)
+/// @description Validates that the specified {_variable} is not null, or of an incorrect data type.
+function validate_parameter(_variable, _variable_name, _expected_type)
+{
+	if (_variable == null)
+	{
+		throw new argument_null_exception(_variable_name);
+	}
+
+	if ((typeof(_variable) != _expected_type) && (instanceof(_variable) != _expected_type))
+	{
+		throw new argument_invalid_type_exception(_variable_name, _expected_type);		
+	}
+}

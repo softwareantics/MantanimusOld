@@ -1,0 +1,18 @@
+// 2021-01-23 21:45:41
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_container_base;
+sprite_index = spr_menu_frame;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+is_moveable = true;
+
+ds_list_add(children,
+            obj_gui_menu_button,
+            obj_gui_menu_button28,
+            obj_gui_menu_button2829,
+            obj_gui_menu_button2830,
+            obj_gui_menu_button2831);

@@ -1,0 +1,10 @@
+// 2021-01-19 18:00:35
+function wait(_i, _time, _command)
+{
+    
+}
+
+function wait(_i, _command)
+{
+    
+}

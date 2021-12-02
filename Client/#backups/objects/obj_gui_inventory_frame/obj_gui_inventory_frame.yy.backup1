@@ -1,0 +1,12 @@
+// 2021-01-25 00:47:31
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_container_base;
+uses_physics = false;
+sprite_index = spr_inventory_frame;
+
+#event create
+
+event_inherited();
+
+is_moveable = true;
+anchor = obj_gui_inventory_frame_top;

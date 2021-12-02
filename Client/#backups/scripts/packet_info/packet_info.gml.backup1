@@ -1,0 +1,13 @@
+// 2021-01-18 22:25:24
+/// @description Shothand for validating if a variables data type is a packet_info.
+#macro packet_info_t nameof(packet_info)
+
+/// @constructor
+/// @description Represents packet information.
+/// @argument {any} _reference The reference ID of the packet.
+/// @argument {any} _data The data contained in the packet, excluding the reference ID.
+struct packet_info(_reference, _data) constructor
+{
+    reference = _reference;
+    data = _data;
+}

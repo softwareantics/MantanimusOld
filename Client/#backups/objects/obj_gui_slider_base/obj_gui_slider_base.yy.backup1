@@ -1,0 +1,46 @@
+// 2021-01-20 16:50:32
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+depth = gui_depth - 1;
+
+maximum = 100;
+
+value = 0;
+
+set_value = function(_value)
+{
+    validate(_value, number_t);
+    
+    if (value < 0)
+    {
+        value = 0;
+        return;
+    }
+    
+    value = _value;
+    
+    if (value >= maximum)
+    {
+        value = maximum;
+    }
+}
+
+get_percentage = function()
+{
+    return round((value / maximum) * 100);
+}
+
+#event draw_gui
+
+if (sprite_index == -1)
+{
+    return;
+}
+
+draw_sprite_part(sprite_index, 0, 0, 0, (value / maximum) * sprite_width, sprite_height, x, y);

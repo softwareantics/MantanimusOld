@@ -1,0 +1,9 @@
+// 2021-01-19 02:23:10
+struct test_tcp_packet_handler() : packet_handler_base() constructor
+{
+    static handle = function(_info)
+    {
+        debug(_info.reference);
+        debug(_info.data);
+    }
+}

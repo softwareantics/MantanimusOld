@@ -1,0 +1,25 @@
+// 2021-01-24 22:57:16
+function gui_scroll_text(_string, _width)
+{
+    if (string_width(_string) >= scroll_width)
+    {
+        var _length = string_length(_string);
+        var _result = "";
+        
+        draw_set_font(text.font);
+        
+        for (var i = string_length(_string); i > 0; i--)
+        {
+            _result += string_char_at(_string, i);
+            
+            if (string_width(_result) >= scroll_width)
+            {
+                _length = string_length(_result);
+                
+                return string_copy(_string, string_length(_string) - _length + 1, _length);
+            } 
+        }
+    }
+    
+    return _string;
+}

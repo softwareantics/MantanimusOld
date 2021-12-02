@@ -1,0 +1,13 @@
+// 2021-01-22 20:09:10
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_container_base;
+sprite_index = spr_gui_bar_bottom;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+is_moveable = true;
+
+ds_list_add(children, obj_gui_xp_bar);

@@ -1,0 +1,17 @@
+// 2021-01-21 16:53:01
+function string_pixel_width(_width)
+{
+    validate(_width, int32_t);
+    
+    var _string = "";
+    
+    repeat (true)
+    {
+        _string += "A";
+        
+        if (string_width(_string) >= _width)
+        {
+            return string_length(_string);
+        }
+    }
+}

@@ -1,0 +1,11 @@
+// 2021-01-25 00:53:33
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+sprite_index = spr_boss_frame;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+depth -= 1;

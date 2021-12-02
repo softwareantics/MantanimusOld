@@ -1,0 +1,5 @@
+// 2021-01-25 00:46:56
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+uses_physics = false;
+sprite_index = spr_inventory_slots;

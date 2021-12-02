@@ -1,0 +1,17 @@
+// 2021-01-25 02:19:12
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_loading_bar;
+sprite_index = spr_boss_bar_fill;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+depth -= 1;
+
+#event step
+
+event_inherited();
+
+progress();

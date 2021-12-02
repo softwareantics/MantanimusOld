@@ -1,0 +1,17 @@
+// 2021-01-20 16:24:28
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+checked = false;
+
+register_event_handler(gui_event_type.mouse_left_release, function()
+{
+    checked = !checked;
+});
+
+#event step Update checked image index.
+
+image_index = checked ? 0 : 1;

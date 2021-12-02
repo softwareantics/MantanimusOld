@@ -1,0 +1,22 @@
+// 2021-01-18 22:32:51
+/// @description Shothand for validating if a variables data type is an override_invalid_exception.
+#macro override_invalid_exception_t nameof(override_invalid_exception)
+
+/// @constructor
+/// @implements {exception_base}
+/// @description The exception that is thrown when an overridden method is invalid. 
+/// @argument {string} _message The base structure name.
+/// @argument {string} _param_name The name of the method that caused the exception to be thrown.
+/// @exception {argument_null_exception} The specified _base_name or _method_name parameter cannot be null.
+/// @exception {argument_invalid_type_exception} The specified _base_name or _method_name parameter must be of type string.
+struct override_invalid_exception(_base_name, _method_name) : exception_base() constructor
+{
+    validate(_base_name, nameof(_base_name), string_t);
+    validate(_method_name, nameof(_method_name), string_t);
+    
+    /// @override
+	/// @memberof {exception_base}
+	/// @member {string} The short message for this exception.
+    message = "The base class method override is invalid.";
+    longMessage = "The override for method " + _method_name + " of base class " + _base_name + " is invalid.";
+}

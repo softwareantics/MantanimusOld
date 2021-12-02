@@ -1,0 +1,26 @@
+// 2021-01-25 15:10:58
+/// @description Shothand for validating if a variables data type is a {base_method_not_defined_exception}.
+#macro base_method_not_defined_exception_t nameof(base_method_not_defined_exception)
+
+/// @constructor
+/// @implements {exception_base}
+/// @description Represents an exception that is thrown when a base method has not been defined in a child class.
+/// @argument {string} _base_name The name of the base structure that requires the method to be defined.
+/// @argument {string} _method_name The name of the method that has not been defined in the child structure.
+/// @exception {argument_null_exception} The specified {_base_name} or {_method_name} parameter cannot be null.
+/// @exception {argument_invalid_type_exception} The specified {_base_name} or {method_name} parameter must be of type {string}.
+struct base_method_not_defined_exception(_base_name, _method_name) : exception_base() constructor
+{
+    validate(_base_name, string_t);
+    validate(_method_name, string_t);
+    
+    /// @override
+    /// @memberof {exception_base}
+    /// @member {string} The short message describing the exception.
+    message = "A base method has not been defined in a child class";
+    
+    /// @override
+    /// @memberof {exception_base}
+    /// @member {string} The long message describing the exception.
+    longMessage = "The base method: " + _method_name + " has not been defined from the base structure: " + _base_name + ".";
+}

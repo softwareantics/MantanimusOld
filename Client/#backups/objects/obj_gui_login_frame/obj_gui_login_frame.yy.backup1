@@ -1,0 +1,19 @@
+// 2021-01-31 18:10:04
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_container_base;
+sprite_index = spr_gui_login_frame;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+is_movable = false;
+
+ds_list_add(children,
+            obj_gui_login_frame_top_bar,
+            obj_gui_login_register_button,
+            obj_gui_login_button,
+            obj_gui_login_username_textbox,
+            obj_gui_login_remember_me_button,
+            obj_gui_login_password_textbox);

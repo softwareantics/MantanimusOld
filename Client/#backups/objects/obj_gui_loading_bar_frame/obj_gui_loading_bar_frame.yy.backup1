@@ -1,0 +1,17 @@
+// 2021-01-22 19:20:02
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_container_base;
+sprite_index = spr_gui_loading_bar_frame;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+is_moveable = true;
+anchor = obj_gui_loading_bar_frame_top;
+
+ds_list_add(children,
+            obj_gui_loading_bar_frame_top,
+            obj_gui_loading_bar_backlight_frame,
+            obj_gui_loading_bar);

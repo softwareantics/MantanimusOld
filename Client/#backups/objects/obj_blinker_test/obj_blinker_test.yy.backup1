@@ -1,0 +1,9 @@
+// 2021-01-20 14:46:14
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_blinker_base;
+uses_physics = false;
+sprite_index = spr_gui_key;
+
+#event create Initialize default parameters.
+
+text = "K";

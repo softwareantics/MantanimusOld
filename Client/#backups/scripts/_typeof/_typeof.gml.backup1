@@ -1,0 +1,21 @@
+// 2021-01-18 21:49:03
+#macro orig_typeof typeof
+
+function typeof(_variable)
+{
+    var _original = orig_typeof(argument0);
+    
+    if (_original == struct_t)
+    {
+        var _struct = instanceof(_original);
+        
+        if (_struct == null)
+        {
+            return _original;
+        }
+        
+        return _struct;
+    }
+    
+    return _original;
+}

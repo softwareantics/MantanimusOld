@@ -1,0 +1,11 @@
+// 2021-01-31 17:56:27
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_button_base;
+uses_physics = false;
+sprite_index = spr_gui_register_button;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+text.data = "FREE Register!";

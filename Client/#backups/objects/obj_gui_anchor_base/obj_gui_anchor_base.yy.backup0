@@ -1,0 +1,23 @@
+// 2021-01-22 18:34:41
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+uses_physics = false;
+
+#event create
+
+container = null;
+
+register_event_handler(gui_event_type.mouse_left_press, function()
+{
+    if (container == null)
+    {
+        return;
+    }
+    
+    if (container.is_moveable && focused)
+    {
+        container.construct_relative_grid();
+        container.make_topmost();
+        container.is_moving = true;
+    }
+});

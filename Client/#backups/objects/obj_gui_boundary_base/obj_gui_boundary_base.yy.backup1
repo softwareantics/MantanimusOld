@@ -1,0 +1,13 @@
+// 2021-01-22 03:53:04
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+#event other_boundary
+
+x = xprevious;
+y = yprevious;

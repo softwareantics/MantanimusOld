@@ -1,0 +1,8 @@
+// 2021-01-17 14:50:03
+struct create_account_handler() constructor
+{
+    function handle(_info)
+    {
+        debug(_info.data.result);
+    }
+}

@@ -1,0 +1,4 @@
+// 2021-01-20 21:49:05
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_loading_bar_base;
+uses_physics = false;

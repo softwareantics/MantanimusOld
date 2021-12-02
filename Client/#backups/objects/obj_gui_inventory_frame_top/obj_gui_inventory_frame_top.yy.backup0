@@ -1,0 +1,11 @@
+// 2021-01-25 00:45:55
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_title_base;
+uses_physics = false;
+sprite_index = spr_inventory_top;
+
+#event create
+
+event_inherited();
+
+text.data = "INVENTORY";

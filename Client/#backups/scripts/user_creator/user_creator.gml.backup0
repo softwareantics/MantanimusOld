@@ -1,0 +1,79 @@
+// 2021-01-16 21:23:09
+enum create_account_response
+{
+    username_already_exists,
+    
+    email_already_exists,
+    
+    email_does_not_match,
+    
+    password_does_not_match,
+    
+    success,
+}
+
+struct user_creator() constructor
+{
+    result = null;
+    header = new dictionary();
+    
+    header.add("Connection", "close");
+    header.add("Content-Type", "application/json");
+    
+    function create(_first_name, _last_name, _email, _email_confirmed, _username, _password, _password_confirmed)
+    {
+        body = {
+            FirstName: _first_name,
+            LastName: _last_name,
+            Email: _email,
+            EmailConfirmed: _email_confirmed,
+            Username: _username,
+            Password: _password,
+            PasswordConfirmed: _password_confirmed,
+        };
+        
+        result = http_request("https://localhost:44380/api/UserAccounts/create_account", "POST", header.map, json_stringify(body));
+    }
+    
+    function async_handle_result()
+    {
+        var _id = async_load[? "id"];
+        var _status = async_load[? "status"];
+        var _url = async_load[? "url"];
+        var _result = async_load[? "result"];
+        
+        if (failed(_status))
+        {
+            throw new http_event_failed_exception(_id, _url);
+        }
+        
+        if (result != _id)
+        {
+            return;
+        }
+        
+        
+    }
+}
+
+struct http_event_failed_exception(_id, _url) constructor
+{
+    validate(_id, nameof(_id), int32_t);
+    validate(_url, nameof(_url), string_t);
+    
+    message = "The HTTP event failed to handle an operation successfully.";
+    
+    longMessage = "The command of ID: " + string(_id) + " failed when performing the operation: " + _url + ".";
+}
+
+
+
+
+
+
+
+
+
+
+
+

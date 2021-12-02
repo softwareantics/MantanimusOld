@@ -1,0 +1,17 @@
+// 2021-01-20 21:52:22
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+sprite_index = spr_gui_loading_bar_top_frame;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+depth = gui_depth - 1;
+
+#event step Update loading status.
+
+event_inherited();
+
+text = "Loading... " + string(obj_gui_login_loading_bar.get_percentage()) + "!";

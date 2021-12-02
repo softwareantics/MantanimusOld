@@ -1,0 +1,12 @@
+// 2021-01-19 02:21:57
+#macro create_account_http_packet_handler_t nameof(create_account_http_packet_handler)
+
+#macro http_api_create_account http_api + "UserAccounts/create_account"
+
+struct create_account_http_packet_handler() : packet_handler_base() constructor
+{
+    static handle = function(_info)
+    {
+        error("Not implemented exception", true);
+    }
+}

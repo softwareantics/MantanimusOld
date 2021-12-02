@@ -1,0 +1,11 @@
+// 2021-01-31 18:00:13
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_checkbox_base;
+uses_physics = false;
+sprite_index = spr_gui_checkbox;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+text.data = "Remember Me!";

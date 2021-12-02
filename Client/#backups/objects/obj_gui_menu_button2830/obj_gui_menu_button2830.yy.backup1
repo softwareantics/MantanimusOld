@@ -1,0 +1,11 @@
+// 2021-01-23 21:26:19
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_button_base;
+sprite_index = spr_menu_button;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+text = "Pierre is Gay";

@@ -1,0 +1,9 @@
+// 2021-01-22 19:19:11
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+sprite_index = spr_gui_loading_bar_backlight_frame;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+event_inherited();

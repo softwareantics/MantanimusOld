@@ -1,0 +1,7 @@
+// 2021-01-20 15:04:41
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_loading_bar_base;
+uses_physics = false;
+
+#event create Initialize default parameters.
+

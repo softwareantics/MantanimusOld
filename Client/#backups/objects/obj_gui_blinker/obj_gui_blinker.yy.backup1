@@ -1,0 +1,14 @@
+// 2021-01-20 14:41:17
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+uses_physics = false;
+
+#event create Initialize default paramters.
+
+event_inherited();
+
+blink_time = 60;
+
+
+
+image_speed = blink_time;

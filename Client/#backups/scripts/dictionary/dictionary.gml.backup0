@@ -1,0 +1,236 @@
+// 2021-01-20 12:27:56
+/// @description Shothand for validating if a variables data type is a {dictionary}.
+#macro dictionary_t nameof(dictionary)
+
+/// @constructor {dictionary}
+/// @description Defines a structure that represents a collection of key-value pairs.
+function dictionary() constructor
+{
+    /// @member {ds_map} The underlying map containing the key-value pairs.
+    map = ds_map_create();
+    
+    /// @member {bool} Indicates whether the resources are disposed.
+    disposed = false;
+    
+    /// @function add(_key, _value)
+    /// @description Adds the specified {_key} and {_value} to the {dictionary}.
+    /// @argument {any - except null} _key The key to add to the {dictionary}.
+    /// @argument {any} _value The value to associate with the specified {_key}.
+    /// @exception {object_disposed_exception} The {dictionary} has been disposed.
+    /// @exception {argument_null_exception} The specified {_key} parameter cannot be null.
+    /// @exception {argument_exception} The specified {_key} parameter already exists in the {dictionary}.
+    function add(_key, _value)
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof("dictionary"));
+        }
+        
+        if (_key == null)
+        {
+            throw new argument_null_exception(nameof("_key"));
+        }
+        
+        if (contains_key(_key))
+        {
+            throw new argument_exception("The specified _key parameter already exists in the dictionary.", nameof("_key"));
+        }
+        
+        ds_map_add(map, _key, _value);
+    }
+    
+    /// @function try_add(_key, _value)
+    /// @description Attempts to add the specified {_key} and {_value} to the {dictionary}.
+    /// @argument {any - except null} _key The key to add to the {dictionary}.
+    /// @argument {any} _value The value to associate with the specified {_key}.
+    /// @exception {object_disposed_exception} The {dictionary} has been disposed.
+    /// @exception {argument_null_exception} The specified {_key} parameter cannot be null.
+    /// @return {bool} {true} if the key-value pair was added to the {dictionary}; otherwise, {false}.
+    function try_add(_key, _value)
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof("dictionary"));
+        }
+        
+        if (_key == null)
+        {
+            throw new argument_null_exception(nameof("_key"));
+        }
+        
+        if (contains_key(_key))
+        {
+            return false;
+        }
+        
+        ds_map_add(map, _key, _value);
+        
+        return true;
+    }
+    
+    /// @function remove(_key)
+    /// @description Removes the value along with the specified {_key} from the {dictionary}.
+    /// @argument {any - except null} _key The key of the pair to remove.
+    /// @exception {object_disposed_exception} The {dictionary} has been disposed.
+    /// @exception {argument_null_exception} The specified {_key} parameter cannot be null.
+    function remove(_key)
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof("dictionary"));
+        }
+        
+        if (_key == null)
+        {
+            throw new argument_null_exception(nameof("_key"));
+        }
+        
+        ds_map_delete(map, _key);
+    }
+    
+    /// @function contains_key(_key)
+    /// @description Determines whether the {dictionary} contains a key-value pair associated with the specified {_key}.
+    /// @argument {any - except null} _key The key to locate.
+    /// @exception {object_disposed_exception} The {dictionary} has been disposed.
+    /// @exception {argument_null_exception} The specified {_key} parameter cannot be null.
+    /// @return {bool} {true} if the key-value pair was located; otherwise, {false}.
+    function contains_key(_key)
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof("dictionary"));
+        }
+        
+        if (_key == null)
+        {
+            throw new argument_null_exception(nameof("_key"));
+        }
+        
+        return ds_map_exists(map, _key);
+    }
+    
+    /// @function get_value(_key)
+    /// @description Gets the value associated with the specified {_key}.
+    /// @argument {any - except null} _key The key associated with the value to locate.
+    /// @exception {object_disposed_exception} The {dictionary} has been disposed.
+    /// @exception {argument_null_exception} The specified {_key} parameter cannot be null.
+    /// @exception {argument_exception} The specified {_key} parameter doesn't exist in the {dictionary}.
+    /// @return {any} The value associated with the specified {_key}.
+    function get_value(_key)
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof("dictionary"));
+        }
+        
+        if (_key == null)
+        {
+            throw new argument_null_exception(nameof("_key"));
+        }
+        
+        if (!contains_key(_key))
+        {
+            throw new argument_exception("The specified key doesn't exist in the dictionary.", nameof("_key"));
+        }
+        
+        return ds_map_find_value(map, _key);
+    }
+    /// @function try_get_value(_key)
+    /// @description Attempts to get the value associated with the specified {_key}.
+    /// @argument {any - except null} _key The key associated with the value to locate.
+    /// @exception {object_disposed_exception} The {dictionary} has been disposed.
+    /// @exception {argument_null_exception} The specified {_key} parameter cannot be null.
+    /// @return {any|null} Returns the value associated with the specified {_key}, or {null} if the key couldn't be located.
+    function try_get_value(_key)
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof("dictionary"));
+        }
+        
+        if (_key == null)
+        {
+            throw new argument_null_exception(nameof("_key"));
+        }
+        
+        if (!contains_key(_key))
+        {
+            return null;
+        }
+        
+        return ds_map_find_value(map, _key);
+    }
+    
+    /// @function clear()
+    /// @description Removes all key-value pairs from the {dictionary}.
+    /// @exception {object_disposed_exception} The {dictionary} has been disposed.
+    function clear()
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof("dictionary"));
+        }
+        
+        ds_map_clear(map);
+    }
+    
+    /// @function destroy()
+    /// @description Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    function destroy()
+    {
+        if (disposed)
+        {
+            return;
+        }
+        
+        if (map != null)
+        {
+            ds_map_destroy(map);
+            map = null;
+        }
+        
+        disposed = true;
+    }
+    
+    /// @function get_count()
+    /// @description Gets the number of key-value pairs contained in the {dictionary}.
+    /// @exception {object_disposed_exception} The {dictionary} has been disposed.
+    /// @return {int32} Returns the number of key-value pairs contained in the {dictionary}.
+    function get_count()
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof("dictionary"));
+        }
+        
+        return ds_map_size(map);
+    }
+    
+    /// @function get_keys()
+    /// @description Gets an array containing the keys in the {dictionary}.
+    /// @exception {object_disposed_exception} The {dictionary} has been disposed.
+    /// @return {array} Returns an array containing the keys in the {dictionary}.
+    function get_keys()
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof("dictionary"));
+        }
+        
+        return ds_map_keys_to_array(map);
+    }
+    
+    /// @function get_values()
+    /// @description Gets an array containing the values in the {dictionary}.
+    /// @exception {object_disposed_exception} The {dictionary} has been disposed.
+    /// @returns {array} Returns an array containing the values in the {dictionary}.
+    function get_values()
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof("dictionary"));
+        }
+        
+        return ds_map_values_to_array(map);
+    }
+}

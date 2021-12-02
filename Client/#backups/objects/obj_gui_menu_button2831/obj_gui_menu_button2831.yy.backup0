@@ -1,0 +1,12 @@
+// 2021-01-24 16:45:42
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_button_base;
+sprite_index = spr_menu_button;
+solid = true;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+text.data = "Yeety yeety, exity exity";

@@ -1,0 +1,12 @@
+// 2021-02-01 00:55:32
+#macro authentication_result_http_packet_handler_t nameof(authentication_result_http_packet_handler)
+
+struct authentication_result_http_packet_handler() : packet_handler_base() constructor
+{
+    static handle = function(_info)
+    {
+        debug(_info.status);
+        debug(_info.reference);
+        debug(_info.data);
+    }
+}

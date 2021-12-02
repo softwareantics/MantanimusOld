@@ -1,0 +1,14 @@
+// 2021-01-20 16:39:37
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+depth = gui_depth - 1;
+
+text = "Title";
+
+font_enable_shadow = true;

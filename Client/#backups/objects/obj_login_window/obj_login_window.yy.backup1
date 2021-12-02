@@ -1,0 +1,13 @@
+// 2021-01-20 13:21:22
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+sprite_index = spr_window;
+uses_physics = false;
+
+#event create
+
+event_inherited();
+
+halign = fa_center;
+valign = fa_middle;
+text = "Mathew";

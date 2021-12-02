@@ -1,0 +1,11 @@
+// 2021-12-02 15:24:39
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_title_base;
+sprite_index = spr_gui_login_frame_top_bar;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+text.data = "MY AWESOME WINDOW";

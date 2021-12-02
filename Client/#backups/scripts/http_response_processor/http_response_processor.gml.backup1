@@ -1,0 +1,105 @@
+// 2021-01-16 21:24:05
+struct http_response_processor() constructor
+{
+    response_to_handler_map = new dictionary();
+    
+    disposed = false;
+    
+	function register_handler(_id, _response_handler)
+	{
+		if (disposed)
+		{
+			throw new object_disposed_exception(nameof(response_processor));
+		}
+		
+		validate(_id, nameof(_id), int32_t);
+		validate(_response_handler, nameof(_response_handler), struct_t);
+		
+		if (!response_to_handler_map.try_add(_id, _response_handler))
+		{
+			throw new response_handler_registration_exception(_id);
+		}
+	}
+	
+	function async_handle_response(_id, _status, _result)
+	{
+	    validate(_id, nameof(_id), int32_t);
+	    validate(_status, nameof(_status), int32_t);
+	    validate(_result, nameof(_result), string_t);
+	    
+	    if (failed(_status))
+        {
+            throw new http_event_failed_exception(_id, _url);
+        }
+        
+        var _handler = response_to_handler_map.try_get_value(_id);
+        
+        if (!_handler)
+        {
+            debug("Failed to locate a HTTP response handler for response ID:" + string(_id));
+        }
+        
+        _handler.handle(_result);
+	}
+    
+	/// @function destroy()
+    /// @description Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+	function destroy()
+	{
+		if (disposed)
+		{
+			return;
+		}
+		
+		if (response_to_handler_map != null)
+		{
+			response_to_handler_map.destroy();
+			response_to_handler_map = null;
+		}
+		
+		disposed = true;
+	}
+}
+
+
+/// @constructor
+/// @implements {exception_base}
+/// @description The exception that is thrown when a response handler has already been registered to a response.
+/// @argument {string_t} _response_name The name of the response that caused the exception to be thrown.
+/// @exception {argument_null_exception} The specified _response_name parameter cannot be null.
+/// @exception {argument_invalid_type_exception} The specified _response_name parameter must be of type string_t.
+function response_handler_registration_exception(_response_name) : exception_base() constructor
+{
+	validate(_response_name, nameof(_response_name), string_t);
+	
+	/// @override
+	/// @memberof {exception_base}
+	/// @member {string_t} The short message for this exception.
+	message = "A HTTP response handler has already been registered.";
+	
+	/// @override
+	/// @memberof {exception_base}
+    /// @member {string_t} The longer message for this exception.
+	longMessage = "A HTTP response handler has already been registered to the response: " + _response_name + ".";
+}
+
+/// @constructor
+/// @implements {exception_base}
+/// @description The exception that is thrown when a response handler cannot be located for the specified response.
+/// @argument {string_t} _response_name The name of the response that caused the exception to be thrown.
+/// @exception {argument_null_exception} The specified _response_name parameter cannot be null.
+/// @exception {argument_invalid_type_exception} The specified _response_name parameter must be of type string_t.
+function unhandled_response_exception(_response_name) : exception_base() constructor
+{
+	validate(_response_name, nameof(_response_name), string_t);
+	
+	/// @override
+	/// @memberof {exception_base}
+	/// @member {string_t} The short message for this exception.
+	message = "A HTTP response handler couldn't be located.";
+	
+	/// @override
+	/// @memberof {exception_base}
+    /// @member {string_t} The longer message for this exception.
+	longMessage = "A HTTP response handler couldn't be located for the specified response: " + _response_name + ".";
+}

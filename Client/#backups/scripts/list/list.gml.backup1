@@ -1,0 +1,77 @@
+// 2021-01-20 12:38:06
+#macro list_t nameof(list)
+
+struct list() constructor
+{
+    collection = ds_list_create();
+    
+    disposed = false;
+    
+    function remove(_value)
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof(list));
+        }
+        
+        var _index = ds_list_find_index(collection, _value);
+        
+        if (_index == -1)
+        {
+            throw new argument_exception("The specified: " + nameof(_value) + " (" + string(_value) + ")" + " parameter doesn't exist in this: " + nameof(list) + ".", nameof(_value));            
+        }
+        
+        ds_list_delete(collection, _index);
+    }
+    
+    function contains(_value)
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof(list));
+        }
+        
+        return ds_list_find_index(collection, _value) != -1;
+    }
+    
+    function get(_index)
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof(list));
+        }
+        
+        validate(_index, int32_t);
+        
+        return ds_list_find_value(collection, _index);
+    }
+    
+    function clear()
+    {
+        if (disposed)
+        {
+            throw new object_disposed_exception(nameof(list));
+        }
+        
+        ds_list_clear(collection);
+    }
+    
+    function destroy()
+    {
+        if (disposed)
+        {
+            return;
+        }
+        
+        if (disposing)
+        {
+            if (collection != null)
+            {
+                ds_list_destroy(collection);
+                collection = null;
+            }
+        }
+        
+        disposed = true;
+    }
+}

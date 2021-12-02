@@ -1,0 +1,43 @@
+// 2021-01-25 01:56:20
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_base;
+uses_physics = false;
+
+#event create Initialize default parameters.
+
+event_inherited();
+
+/// @description The amount by which a call to {progress} increases the current position of the loading bar. 
+step = 1;
+
+/// @description The minimum value of the loading bar, you'd usually keep this at zero.
+minimum = 0;
+
+/// @description The maximum value of the loading bar, you'd usually set this to the amount of files you're loading.
+maximum = 100;
+
+/// @description The current position of the loading bar.
+value = 0;
+
+/// @function progress()
+/// @description Advances the current position of the loading bar by the step field.
+progress = function()
+{
+    value = value + step >= maximum ? minimum : value + step;
+}
+
+/// @function get_percentage()
+/// @description Gets the total percetange of completion of the loading bar.
+get_percentage = function()
+{
+    return round((value / maximum) * 100);
+}
+
+#event draw_gui
+
+if (sprite_index == -1)
+{
+    return;
+}
+
+draw_sprite_part(sprite_index, 0, 0, 0, (value / maximum) * sprite_width, sprite_height, x - sprite_xoffset, y - sprite_yoffset);

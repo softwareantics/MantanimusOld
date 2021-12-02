@@ -1,0 +1,46 @@
+// 2021-01-19 22:02:10
+function draw_9slice(_sprite, _x, _y, _width, _height)
+{
+    if (_sprite == null)
+    {
+        throw new argument_null_exception(nameof(_sprite));
+    }
+    
+    if (!sprite_exists(_sprite))
+    {
+        throw new index_invalid_exception("sprite", _sprite);
+    }
+    
+    validate(_x, number_t);
+    validate(_y, number_t);
+    validate(_width, number_t);
+    validate(_height, number_t);
+    
+    var _sprite_width = sprite_get_width(_sprite);
+    var _sprite_height = sprite_get_height(_sprite);
+    
+    if ((_sprite_width % 3) != 0 || (_sprite_height % 3) != 0)
+    {
+        error(nameof(draw_9slice) + " function cannot take in a sprite as a parameter that doesn't have dimensions that are multiplies of three.", true);
+    }
+    
+    if ((_width < _sprite_width) || (_height < _sprite_height))
+    {
+        error(nameof(draw_9slice) + " function cannot draw a sliced sprite smaller than the sprites dimensions.", true);
+    }
+    
+    var _sw = _sprite_width / 3;
+    var _sh = _sprite_height / 3;
+    
+    var _x2 = _x + _width;
+    var _y2 = _y + _height;
+    
+    var _left = [0, _sw, _sw * 2];
+    var _top = [0, _sh, _sh *  2];
+    
+    // Corners
+    draw_sprite_part(_sprite, 0, _left[0], _top[0], _sw, _sh, _x, _y);
+    draw_sprite_part(_sprite, 0, _left[2], _top[0], _sw, _sh, _x2 - _sw, _y);
+    draw_sprite_part(_sprite, 0, _left[0], _top[2], _sw, _sh, _x, _y2 - _sh);
+    draw_sprite_part(_sprite, 0, _left[2], _top[2], _sw, _sh, _x2 - _sw, _y2 - _sh);
+}

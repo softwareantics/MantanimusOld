@@ -1,0 +1,5 @@
+// 2021-12-02 15:26:00
+#event properties (no comments/etc. here are saved)
+parent_index = obj_gui_container_base;
+sprite_index = spr_gui_login_frame;
+uses_physics = false;

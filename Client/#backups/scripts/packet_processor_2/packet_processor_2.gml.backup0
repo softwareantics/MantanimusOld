@@ -1,0 +1,50 @@
+// 2021-01-16 21:56:33
+struct packet_processor() constructor
+{
+    reference_to_handler_map = new dictionary();
+    
+    disposed = false;
+    
+    function register_handler(_reference, _handler)
+    {
+        if (_reference == null)
+        {
+            throw new argument_null_exception(nameof(_reference));
+        }
+        
+        validate(_handler, nameof(_handler), struct_t);
+		
+		reference_to_handler_map.add(_reference, _handler);
+    }
+    
+    function async_process()
+    {
+        var _info = get_packet_info();
+        var _handler = reference_to_handler_map.try_get_value(_info.reference);
+        
+        if (!_handler)
+        {
+            debug("Failed to locate a response handler for reference: " + string(_info.reference));
+        }
+        
+        _handler.handle(_info.data);
+    }
+    
+	/// @function destroy()
+    /// @description Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+	function destroy()
+	{
+		if (disposed)
+		{
+			return;
+		}
+		
+		if (reference_to_handler_map != null)
+		{
+			reference_to_handler_map.destroy();
+			reference_to_handler_map = null;
+		}
+		
+		disposed = true;
+	}
+}

@@ -1,0 +1,38 @@
+// 2021-02-03 23:49:03
+#event properties (no comments/etc. here are saved)
+parent_index = -1;
+persistent = true;
+uses_physics = false;
+
+#event create Setup packet processor.
+
+if (instance_number(obj_http) > 1)
+{
+	throw "You can only create one HTTP object.";
+}
+
+/// @description Represents the current API host location.
+#macro http_api "https://localhost:44302/api/"
+
+#mfunc http_post(url, body) http_request(url, "POST", default_header_map, json_stringify(body))
+
+#macro default_header_map global.json_header_map
+
+default_header_map = ds_map_create();
+
+ds_map_add(default_header_map, "Content-Type", "application/json");
+
+/// @description The HTTP packet processor, used to handling incoming HTTP packet.
+processor = new http_packet_processor();
+
+processor.register_handler(http_api_user_accounts_authenticate, new authentication_response_http_packet_handler());
+
+#event async_http Handle incoming packets.
+
+processor.async_process();
+
+#event cleanup Dispose of resources.
+
+processor.destroy();
+
+ds_map_destroy(default_header_map);

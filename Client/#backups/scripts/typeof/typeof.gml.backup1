@@ -1,0 +1,15 @@
+// 2021-01-18 21:15:47
+static typeof_map = new dictionary();
+
+typeof_map.add()
+
+_variable = argument0;
+
+
+
+if (is_struct(_variable))
+{
+    
+    
+    return instanceof(dictionary);
+}

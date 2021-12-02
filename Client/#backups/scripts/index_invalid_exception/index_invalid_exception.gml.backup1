@@ -1,0 +1,27 @@
+// 2021-01-25 15:10:22
+/// @description Shothand for validating if a variables data type is a {index_invalid_exception}.
+#macro index_invalid_exception_t nameof(index_invalid_exception)
+
+/// @constructor
+/// @implements {exception_base}
+/// @description Defines a structure that represents an exception that is thrown when a asset or instance index doesn't exist.
+/// @argument {string} _asset_type The type of asset or instance that couldn't be found, as a string.
+/// @argument {int32} _index The index of the asset or instance that couldn't be located.
+/// @exception {argument_null_exception} The specified {_asset_type} or {_index} parameter cannot be null.
+/// @exception {argument_invalid_type_exception} The specified {_asset_type} parameter must be of type {string}.
+/// @exception {argument_invalid_type_exception} The specified {_index} parameter must be of type {int32}.
+struct index_invalid_exception(_asset_type, _index) : exception_base() constructor
+{
+    validate(_asset_type, string_t);
+    validate(_index, int32_t);
+    
+    /// @override
+    /// @memberof {exception_base}
+    /// @member {string} The short message describing the exception.
+    message = "The asset or instance index doesn't exist.";
+    
+    /// @override
+    /// @memberof {exception_base}
+    /// @member {string} The long message describing the exception.
+    longMessage = "The asset or instance index: " + string(_index) + " of type: " + _asset_type + " doesn't exist.";
+}

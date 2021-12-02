@@ -1,0 +1,16 @@
+// 2021-01-19 02:14:51
+/// @description Shothand for validating if a variables data type is a {packet_handler_base}.
+#macro packet_handler_base_t nameof(packet_handler_base)
+
+/// @interface {packet_handler_base}
+/// @description Defines an interface that represents a packet handler.
+struct packet_handler_base() constructor
+{
+    /// @abstract
+    /// @function handle(_info)
+    /// @description Handles the incoming packet information.
+    static handle = function(_info)
+    {
+        base(nameof(packet_handler_base), nameof(handle));
+    }
+}
